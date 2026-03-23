@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gastenboek — Zwieneboer'n Weekend</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Setup instructie banner */
+    .setup-banner {
+      background: rgba(232,184,75,0.1);
+      border: 1px solid rgba(232,184,75,0.4);
+      border-left: 3px solid var(--gold);
+      padding: 20px 28px;
+      margin-bottom: 32px;
+      display: none; /* verborgen als Supabase geconfigureerd is */
+    }
+    .setup-banner.show { display: flex; gap: 16px; align-items: flex-start; }
+    .sb-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px;
+    }
+    .setup-steps { font-size: 0.82rem; color: var(--muted); line-height: 2; }
+    .setup-steps code {
+      background: rgba(255,255,255,0.08);
+      padding: 1px 6px;
+      font-family: monospace;
+      font-size: 0.85em;
+      color: var(--white);
+    }
+    .loading-state {
+      padding: 40px 0;
+      text-align: center;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+    .spinner {
+      display: inline-block;
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQlqkEpRUYmpC9P4tdUUmZXkPVA-bgbgZfQki6Sqw8UGrLf811MbasRMuVLjMvxy56MKbDucxdjBTqeGS8agxxsmdIqCivmcQtaqXJFXeV9CSica60tFh0bWSug_ZemOqu6V2OTVQkCx756MYWnyP4vZ16gvTtHiwnRzQ6ZTyKTe7zmM4_iuMVkJwM=w200" alt="logo">
+    <div class="nav-logo-text">Zwieneboer<span>'n</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="locatie.html">Locatie</a></li>
+    <li><a href="praktisch.html">Praktisch</a></li>
+    <li><a href="webshop.html">Webshop</a></li>
+    <li><a href="halloffame.html">Hall of Fame</a></li>
+    <li><a href="gastenboek.html" class="active">Gastenboek</a></li>
+  </ul>
+  <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html">Home</a><a href="locatie.html">Locatie</a><a href="praktisch.html">Praktisch</a>
+  <a href="webshop.html">Webshop</a><a href="halloffame.html">Hall of Fame</a><a href="gastenboek.html">Gastenboek</a>
+</div>
+
+<div class="page-header">
+  <div class="ph-bg"></div>
+  <img class="ph-boar" src="https://lh3.googleusercontent.com/sitesv/APaQ0ST8RKndpCmcVi3OlsiQCDCIDbfuwsxMNcvJPp7EeGb_XsquxoZtmE8bk2z0MM__Xhd2HtcJrOXg4WXHKsLECWaSy6I7arDG1f6ED-S_yNUFzUCHXodLb1UEjpBAiNEUWnmyM4Ifl7zVfs62qk6x9s_tDb2ffkCg_zVOJxL6iTpvlLg-u30Gznfn0pc=w1280" alt="">
+  <div class="ph-content">
+    <span class="ph-tag">Gedeeld Gastenboek</span>
+    <h1>Gastenboek</h1>
+    <p>Berichten zijn zichtbaar voor iedereen — op alle apparaten en browsers.</p>
+  </div>
+</div>
+
+<div class="section">
+
+
+
+  <div class="gb-wrap">
+    <!-- FORM -->
+    <div class="reveal">
+      <span class="s-tag">Schrijf een bericht</span>
+      <h2>Laat je van<br>je horen</h2>
+      <div class="gold-bar"></div>
+      <form class="gb-form-box" id="gb-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="gb-name">Jouw naam</label>
+          <input type="text" id="gb-name" placeholder="Wie ben jij?" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="gb-msg">Jouw bericht</label>
+          <textarea id="gb-msg" placeholder="Schrijf hier je bericht..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;" id="gb-submit">
+          Bericht plaatsen
+        </button>
+      </form>
+    </div>
+
+    <!-- BERICHTEN -->
+    <div class="reveal reveal-d1">
+      <span class="s-tag">Berichten</span>
+      <h2>Wat zeggen<br>de vrienden?</h2>
+      <div class="gold-bar"></div>
+      <div id="gb-entries">
+        <div class="loading-state"><span class="spinner"></span>Berichten laden...</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<footer>
+  <div class="foot-logo">
+    <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQlqkEpRUYmpC9P4tdUUmZXkPVA-bgbgZfQki6Sqw8UGrLf811MbasRMuVLjMvxy56MKbDucxdjBTqeGS8agxxsmdIqCivmcQtaqXJFXeV9CSica60tFh0bWSug_ZemOqu6V2OTVQkCx756MYWnyP4vZ16gvTtHiwnRzQ6ZTyKTe7zmM4_iuMVkJwM=w200" alt="logo">
+    <span>Zwieneboer'n Weekend</span>
+  </div>
+  <div class="foot-links"><a href="../index.html">Home</a><a href="halloffame.html">Hall of Fame</a></div>
+  <div class="foot-copy">© 2026 Zwieneboer'n Weekend — Gemaakt met zorg voor de vrienden</div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+// ════════════════════════════════════════════
+// ▼▼▼  VASTE JOUW SUPABASE GEGEVENS HIER IN  ▼▼▼
+const SUPABASE_URL = 'https://vpvvcltdspyxpvaizzad.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_3-z_qLw8XSAxHMZWwyKoFw_UgUlhaSF';
+// ▲▲▲  VASTE JOUW SUPABASE GEGEVENS HIER IN  ▲▲▲
+// ════════════════════════════════════════════
+
+const isConfigured = SUPABASE_URL !== 'JOUW_SUPABASE_URL_HIER';
+const banner = document.getElementById('setupBanner');
+if (isConfigured) banner.classList.remove('show');
+
+// ── API helpers ──────────────────────────────
+async function fetchBerichten() {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/gastenboek?order=datum.desc&limit=50`, {
+    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+  });
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+
+async function postBericht(naam, bericht) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/gastenboek`, {
+    method: 'POST',
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal'
+    },
+    body: JSON.stringify({ naam, bericht })
+  });
+  if (!r.ok) throw new Error(await r.text());
+}
+
+// ── Render berichten ─────────────────────────
+function renderBerichten(items) {
+  const c = document.getElementById('gb-entries');
+  if (!items.length) {
+    c.innerHTML = '<p style="padding:24px 0;color:var(--muted);font-style:italic;">Nog geen berichten — wees de eerste!</p>';
+    return;
+  }
+  c.innerHTML = items.map(e => {
+    const d = new Date(e.datum).toLocaleDateString('nl-NL', { day:'numeric', month:'long', year:'numeric' });
+    return `
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-name">${e.naam}</span>
+          <span class="entry-date">${d}</span>
+        </div>
+        <div class="entry-text">${e.bericht}</div>
+      </div>`;
+  }).join('');
+}
+
+// ── Laad berichten ───────────────────────────
+async function laadBerichten() {
+  const c = document.getElementById('gb-entries');
+  if (!isConfigured) {
+    c.innerHTML = '<p style="color:var(--muted);font-style:italic;padding:16px 0;">Stel Supabase in (zie instructie hierboven) om berichten te laden.</p>';
+    return;
+  }
+  try {
+    const items = await fetchBerichten();
+    renderBerichten(items);
+  } catch (err) {
+    c.innerHTML = `<p style="color:#e74c3c;font-size:.85rem;padding:16px 0;">Fout bij laden: ${err.message}</p>`;
+  }
+}
+
+// ── Formulier submit ─────────────────────────
+const form = document.getElementById('gb-form');
+const btn  = document.getElementById('gb-submit');
+
+form?.addEventListener('submit', async ev => {
+  ev.preventDefault();
+  const naam    = document.getElementById('gb-name').value.trim();
+  const bericht = document.getElementById('gb-msg').value.trim();
+  if (!naam || !bericht) return;
+
+  if (!isConfigured) {
+    showToast('Stel eerst Supabase in! Zie de instructie hierboven.');
+    return;
+  }
+
+  btn.textContent = 'Versturen...';
+  btn.disabled = true;
+
+  try {
+    await postBericht(naam, bericht);
+    form.reset();
+    showToast('Bericht geplaatst ✓ — iedereen kan het nu zien!');
+    await laadBerichten();
+  } catch (err) {
+    showToast('Er ging iets mis: ' + err.message);
+  } finally {
+    btn.textContent = 'Bericht plaatsen';
+    btn.disabled = false;
+  }
+});
+
+// Start
+laadBerichten();
+</script>
+
+</body>
+</html>

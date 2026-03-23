@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praktische Informatie — Zwieneboer'n Weekend</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQlqkEpRUYmpC9P4tdUUmZXkPVA-bgbgZfQki6Sqw8UGrLf811MbasRMuVLjMvxy56MKbDucxdjBTqeGS8agxxsmdIqCivmcQtaqXJFXeV9CSica60tFh0bWSug_ZemOqu6V2OTVQkCx756MYWnyP4vZ16gvTtHiwnRzQ6ZTyKTe7zmM4_iuMVkJwM=w200" alt="logo">
+    <div class="nav-logo-text">Zwieneboer<span>'n</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="locatie.html">Locatie</a></li>
+    <li><a href="praktisch.html" class="active">Praktisch</a></li>
+    <li><a href="webshop.html">Webshop</a></li>
+    <li><a href="halloffame.html">Hall of Fame</a></li>
+    <li><a href="gastenboek.html">Gastenboek</a></li>
+  </ul>
+  <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html">Home</a>
+  <a href="locatie.html">Locatie</a>
+  <a href="praktisch.html">Praktisch</a>
+  <a href="webshop.html">Webshop</a>
+  <a href="halloffame.html">Hall of Fame</a>
+  <a href="gastenboek.html">Gastenboek</a>
+</div>
+
+<div class="page-header">
+  <div class="ph-bg"></div>
+  <img class="ph-boar"
+    src="https://lh3.googleusercontent.com/sitesv/APaQ0ST8RKndpCmcVi3OlsiQCDCIDbfuwsxMNcvJPp7EeGb_XsquxoZtmE8bk2z0MM__Xhd2HtcJrOXg4WXHKsLECWaSy6I7arDG1f6ED-S_yNUFzUCHXodLb1UEjpBAiNEUWnmyM4Ifl7zVfs62qk6x9s_tDb2ffkCg_zVOJxL6iTpvlLg-u30Gznfn0pc=w1280"
+    alt="">
+  <div class="ph-content">
+    <span class="ph-tag">Praktische Informatie</span>
+    <h1>Alles wat je<br>moet weten</h1>
+    <p>Planning, paklijst, kosten en de gouden regels — alles op een rij.</p>
+  </div>
+</div>
+
+<div class="section">
+
+  <!-- PLANNING -->
+  <div class="reveal">
+    <span class="s-tag">Planning</span>
+    <h2>Wanneer & hoe laat</h2>
+    <div class="gold-bar"></div>
+    <div class="info-rows">
+      <div class="info-row"><span class="ir-label">Datum</span><span class="ir-val">Vrijdag 1 mei t/m zondag 3 mei 2026</span></div>
+      <div class="info-row"><span class="ir-label">Aankomst</span><span class="ir-val">Vrijdag 1 mei, vanaf 15:00 uur</span></div>
+      <div class="info-row"><span class="ir-label">Vertrek</span><span class="ir-val">Zondag 3 mei, voor 12:00 uur</span></div>
+      <div class="info-row"><span class="ir-label">Locatie</span><span class="ir-val">Wordt bekendgemaakt op 1 april 2026</span></div>
+      <div class="info-row"><span class="ir-label">Vervoer</span><span class="ir-val">Eigen vervoer of carpoolregeling — wordt afgestemd</span></div>
+    </div>
+  </div>
+
+  <hr class="sep" style="margin: 60px 0;">
+
+  <!-- PAKLIJST -->
+  <div class="reveal">
+    <span class="s-tag">Paklijst</span>
+    <h2>Wat neem je mee?</h2>
+    <div class="gold-bar"></div>
+    <div class="checklist">
+      <div class="ci"><span class="ci-icon">🛏️</span><div><span class="ci-name">Slaapspullen</span><span class="ci-sub">Slaapzak, kussen, eventueel luchtmatras</span></div></div>
+      <div class="ci"><span class="ci-icon">👕</span><div><span class="ci-name">Kleding (3 dagen)</span><span class="ci-sub">Regenjas altijd meenemen</span></div></div>
+      <div class="ci"><span class="ci-icon">🚿</span><div><span class="ci-name">Toiletspullen</span><span class="ci-sub">Handdoek, tandenborstel, shampoo</span></div></div>
+      <div class="ci"><span class="ci-icon">💊</span><div><span class="ci-name">Medicijnen</span><span class="ci-sub">Persoonlijk + pijnstillers en pleisters</span></div></div>
+      <div class="ci"><span class="ci-icon">📱</span><div><span class="ci-name">Oplader + powerbank</span><span class="ci-sub">Houd de batterij op peil</span></div></div>
+      <div class="ci"><span class="ci-icon">👟</span><div><span class="ci-name">Stevige schoenen</span><span class="ci-sub">Voor buiten en activiteiten</span></div></div>
+      <div class="ci"><span class="ci-icon">🍫</span><div><span class="ci-name">Snacks</span><span class="ci-sub">Eigen favorieten voor onderweg</span></div></div>
+      <div class="ci"><span class="ci-icon">🎯</span><div><span class="ci-name">Goede zin</span><span class="ci-sub">Het allerbelangrijkste!</span></div></div>
+    </div>
+  </div>
+
+  <hr class="sep" style="margin: 60px 0;">
+
+  <!-- KOSTEN -->
+  <div class="reveal">
+    <span class="s-tag">Kosten</span>
+    <h2>Wat kost het weekend?</h2>
+    <div class="gold-bar"></div>
+    <div class="info-rows">
+      <div class="info-row"><span class="ir-label">Deelnamebedrag</span><span class="ir-val">Wordt bekendgemaakt zodra de locatie bekend is</span></div>
+      <div class="info-row"><span class="ir-label">Drank & eten</span><span class="ir-val">Inbegrepen in het deelnamebedrag</span></div>
+      <div class="info-row"><span class="ir-label">Vervoer</span><span class="ir-val">Eigen rekening of carpoolregeling</span></div>
+      <div class="info-row"><span class="ir-label">Merchandise</span><span class="ir-val">Optioneel via de <a href="webshop.html" style="color:var(--gold);text-decoration:none;">webshop</a></span></div>
+    </div>
+  </div>
+
+  <hr class="sep" style="margin: 60px 0;">
+
+  <!-- REGELS -->
+  <div class="reveal">
+    <span class="s-tag">De gouden regels</span>
+    <h2>Vijf regels voor een perfect weekend</h2>
+    <div class="gold-bar"></div>
+    <div class="feat-grid">
+      <div class="feat-card reveal reveal-d1">
+        <div class="fc-num">I</div>
+        <div class="fc-title">Respect</div>
+        <div class="fc-text">Respect voor elkaar, de omgeving en de spullen van de locatie.</div>
+      </div>
+      <div class="feat-card reveal reveal-d2">
+        <div class="fc-num">II</div>
+        <div class="fc-title">Opruimen</div>
+        <div class="fc-text">Ruim je eigen troep op. We laten het mooier achter dan we het vonden.</div>
+      </div>
+      <div class="feat-card reveal reveal-d3">
+        <div class="fc-num">III</div>
+        <div class="fc-title">Meedoen</div>
+        <div class="fc-text">Iedereen doet mee aan activiteiten en challenges. Geen excuses.</div>
+      </div>
+    </div>
+    <div style="background:var(--dark);border:1px solid var(--border);border-top:none;padding:24px 36px;margin-top:1px;">
+      <span style="font-family:'Barlow',sans-serif;font-style:italic;color:var(--muted);">What happens at Zwieneboer'n, stays at Zwieneboer'n... <span style="color:var(--gold)">bijna.</span></span>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+<footer>
+  <div class="foot-logo">
+    <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQlqkEpRUYmpC9P4tdUUmZXkPVA-bgbgZfQki6Sqw8UGrLf811MbasRMuVLjMvxy56MKbDucxdjBTqeGS8agxxsmdIqCivmcQtaqXJFXeV9CSica60tFh0bWSug_ZemOqu6V2OTVQkCx756MYWnyP4vZ16gvTtHiwnRzQ6ZTyKTe7zmM4_iuMVkJwM=w200" alt="logo">
+    <span>Zwieneboer'n Weekend</span>
+  </div>
+  <div class="foot-links">
+    <a href="../index.html">Home</a>
+    <a href="locatie.html">Locatie</a>
+    <a href="gastenboek.html">Gastenboek</a>
+  </div>
+  <div class="foot-copy">© 2026 Zwieneboer'n Weekend — Gemaakt met zorg voor de vrienden</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

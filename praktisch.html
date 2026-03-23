@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webshop — Zwieneboer'n Weekend</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQlqkEpRUYmpC9P4tdUUmZXkPVA-bgbgZfQki6Sqw8UGrLf811MbasRMuVLjMvxy56MKbDucxdjBTqeGS8agxxsmdIqCivmcQtaqXJFXeV9CSica60tFh0bWSug_ZemOqu6V2OTVQkCx756MYWnyP4vZ16gvTtHiwnRzQ6ZTyKTe7zmM4_iuMVkJwM=w200" alt="logo">
+    <div class="nav-logo-text">Zwieneboer<span>'n</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="locatie.html">Locatie</a></li>
+    <li><a href="praktisch.html">Praktisch</a></li>
+    <li><a href="webshop.html" class="active">Webshop</a></li>
+    <li><a href="halloffame.html">Hall of Fame</a></li>
+    <li><a href="gastenboek.html">Gastenboek</a></li>
+  </ul>
+  <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="../index.html">Home</a>
+  <a href="locatie.html">Locatie</a>
+  <a href="praktisch.html">Praktisch</a>
+  <a href="webshop.html">Webshop</a>
+  <a href="halloffame.html">Hall of Fame</a>
+  <a href="gastenboek.html">Gastenboek</a>
+</div>
+
+<div class="page-header">
+  <div class="ph-bg"></div>
+  <img class="ph-boar"
+    src="https://lh3.googleusercontent.com/sitesv/APaQ0ST8RKndpCmcVi3OlsiQCDCIDbfuwsxMNcvJPp7EeGb_XsquxoZtmE8bk2z0MM__Xhd2HtcJrOXg4WXHKsLECWaSy6I7arDG1f6ED-S_yNUFzUCHXodLb1UEjpBAiNEUWnmyM4Ifl7zVfs62qk6x9s_tDb2ffkCg_zVOJxL6iTpvlLg-u30Gznfn0pc=w1280"
+    alt="">
+  <div class="ph-content">
+    <span class="ph-tag">Merchandise</span>
+    <h1>De officiële<br>Webshop</h1>
+    <p>Officiële Zwieneboer'n merchandise. Draag met trots.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="reveal">
+    <span class="s-tag">Beschikbare producten</span>
+    <h2>Zwieneboer'n Merch</h2>
+    <div class="gold-bar"></div>
+
+    <div class="shop-grid">
+      <div class="shop-item">
+        <div class="si-img">👕</div>
+        <span class="si-badge">Nieuw 2026</span>
+        <div class="si-body">
+          <div class="si-name">T-shirt</div>
+          <div class="si-desc">Klassiek T-shirt met het officiële Zwieneboer'n logo. Beschikbaar in S t/m XXL.</div>
+          <div class="si-footer">
+            <span class="si-price">€22,50</span>
+            <button class="btn btn-gold" style="padding:10px 20px;" onclick="bestel('T-shirt')">Bestellen</button>
+          </div>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="si-img">🧥</div>
+        <span class="si-badge" style="background:transparent;border:1px solid var(--gold);color:var(--gold);">Populair</span>
+        <div class="si-body">
+          <div class="si-name">Hoodie 2026</div>
+          <div class="si-desc">Zware kwaliteit hoodie met geborduurde branding. Warm en stijlvol voor het weekend.</div>
+          <div class="si-footer">
+            <span class="si-price">€39,00</span>
+            <button class="btn btn-gold" style="padding:10px 20px;" onclick="bestel('Hoodie')">Bestellen</button>
+          </div>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="si-img">🧢</div>
+        <div class="si-body">
+          <div class="si-name">Snapback Pet</div>
+          <div class="si-desc">Snapback met geborduurd logo. One size fits all.</div>
+          <div class="si-footer">
+            <span class="si-price">€18,00</span>
+            <button class="btn btn-gold" style="padding:10px 20px;" onclick="bestel('Pet')">Bestellen</button>
+          </div>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="si-img">🍺</div>
+        <div class="si-body">
+          <div class="si-name">Bierpul</div>
+          <div class="si-desc">0,5L bierpul van gehard glas met ingegraveerd Zwieneboer'n logo.</div>
+          <div class="si-footer">
+            <span class="si-price">€14,00</span>
+            <button class="btn btn-gold" style="padding:10px 20px;" onclick="bestel('Bierpul')">Bestellen</button>
+          </div>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="si-img">🏅</div>
+        <div class="si-body">
+          <div class="si-name">Sleutelhanger</div>
+          <div class="si-desc">Massieve metalen sleutelhanger met logo. Compact souvenir.</div>
+          <div class="si-footer">
+            <span class="si-price">€8,50</span>
+            <button class="btn btn-gold" style="padding:10px 20px;" onclick="bestel('Sleutelhanger')">Bestellen</button>
+          </div>
+        </div>
+      </div>
+      <div class="shop-item">
+        <div class="si-img">📔</div>
+        <div class="si-body">
+          <div class="si-name">Notitieboekje</div>
+          <div class="si-desc">A6 notitieboekje met linnen kaft en logo. Voor de planners.</div>
+          <div class="si-footer">
+            <span class="si-price">€11,00</span>
+            <button class="btn btn-gold" style="padding:10px 20px;" onclick="bestel('Notitieboekje')">Bestellen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px; background:var(--dark); border:1px solid var(--border); border-left:3px solid var(--gold); padding:28px 32px; display:flex; gap:20px; align-items:flex-start;" class="reveal">
+      <span style="font-size:1.5rem;flex-shrink:0;">📦</span>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Hoe werkt het bestellen?</div>
+        <p style="font-size:0.85rem;color:var(--muted);margin:0;">Klik op "Bestellen" en voer je naam in. De organisator neemt contact op voor betaling en afhaling. Bestellingen kunnen worden meegenomen naar het weekend of op afspraak worden afgehaald.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<footer>
+  <div class="foot-logo">
+    <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQlqkEpRUYmpC9P4tdUUmZXkPVA-bgbgZfQki6Sqw8UGrLf811MbasRMuVLjMvxy56MKbDucxdjBTqeGS8agxxsmdIqCivmcQtaqXJFXeV9CSica60tFh0bWSug_ZemOqu6V2OTVQkCx756MYWnyP4vZ16gvTtHiwnRzQ6ZTyKTe7zmM4_iuMVkJwM=w200" alt="logo">
+    <span>Zwieneboer'n Weekend</span>
+  </div>
+  <div class="foot-links">
+    <a href="../index.html">Home</a>
+    <a href="praktisch.html">Praktisch</a>
+    <a href="gastenboek.html">Gastenboek</a>
+  </div>
+  <div class="foot-copy">© 2026 Zwieneboer'n Weekend — Gemaakt met zorg voor de vrienden</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
