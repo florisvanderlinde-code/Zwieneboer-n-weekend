@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gastenboek – Zwieneboer'n Weekend 2026</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">Zwieneboer'n <span>Weekend</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/programma/">Programma</a></li>
+      <li><a href="/halloffame/">Hall of Fame</a></li>
+      <li><a href="/gastenboek/">Gastenboek</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="page">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="section-header">
+        <span class="section-label">Laat je sporen na</span>
+        <h2 class="section-title">Gastenboek</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <!-- FORM -->
+      <div class="card fade-in" style="max-width: 650px; margin: 0 auto 2.5rem;">
+        <div class="guestbook-form" id="gb-form">
+          <input type="text" id="gb-name" placeholder="Je naam" maxlength="50" required>
+          <textarea id="gb-message" placeholder="Je bericht..." maxlength="500" required></textarea>
+          <button class="btn" id="gb-submit" onclick="submitEntry()">
+            Verstuur bericht
+          </button>
+          <div id="gb-status" style="text-align: center; font-size: 0.85rem; color: var(--gold); display: none;"></div>
+        </div>
+      </div>
+
+      <!-- ENTRIES -->
+      <div id="gb-loading" style="text-align: center; color: var(--text-muted); font-size: 0.9rem; padding: 2rem;">
+        Berichten laden...
+      </div>
+      <div class="guestbook-entries" id="gb-entries"></div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Zwieneboer'n Weekend <span class="gold">·</span> Sinds jaar en dag <span class="gold">·</span> 2026</p>
+  </footer>
+
+  <script src="/js/main.js"></script>
+
+  <!-- ═══ SUPABASE GUESTBOOK ═══ -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    // ⚠️ VUL HIER JE EIGEN SUPABASE URL EN ANON KEY IN
+    const SUPABASE_URL = 'https://jouw-project.supabase.co';
+    const SUPABASE_KEY = 'jouw-anon-key';
+    const TABLE_NAME = 'gastenboek';
+
+    let sb;
+    try {
+      sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    } catch (e) {
+      console.warn('Supabase niet geconfigureerd:', e);
+    }
+
+    // ── Load entries ──
+    async function loadEntries() {
+      const loading = document.getElementById('gb-loading');
+      const container = document.getElementById('gb-entries');
+
+      if (!sb || SUPABASE_URL.includes('jouw-project')) {
+        loading.innerHTML = '⚙️ Supabase nog niet geconfigureerd. Vul je URL en key in het script in.';
+        return;
+      }
+
+      try {
+        const { data, error } = await sb
+          .from(TABLE_NAME)
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(50);
+
+        if (error) throw error;
+
+        loading.style.display = 'none';
+
+        if (!data || data.length === 0) {
+          container.innerHTML = `
+            <div style="text-align: center; color: var(--text-muted); padding: 2rem;">
+              Nog geen berichten. Wees de eerste!
+            </div>`;
+          return;
+        }
+
+        container.innerHTML = data.map(e => `
+          <div class="gb-entry fade-in visible">
+            <div class="gb-entry-header">
+              <span class="gb-entry-name">${escHtml(e.name)}</span>
+              <span class="gb-entry-date">${formatDate(e.created_at)}</span>
+            </div>
+            <p class="gb-entry-msg">${escHtml(e.message)}</p>
+          </div>
+        `).join('');
+      } catch (err) {
+        loading.innerHTML = '❌ Kon berichten niet laden.';
+        console.error(err);
+      }
+    }
+
+    // ── Submit entry ──
+    async function submitEntry() {
+      const name = document.getElementById('gb-name').value.trim();
+      const message = document.getElementById('gb-message').value.trim();
+      const status = document.getElementById('gb-status');
+      const btn = document.getElementById('gb-submit');
+
+      if (!name || !message) {
+        showStatus('Vul je naam en bericht in.', '#e74c3c');
+        return;
+      }
+
+      if (!sb || SUPABASE_URL.includes('jouw-project')) {
+        showStatus('Supabase is nog niet geconfigureerd.', '#e74c3c');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Versturen...';
+
+      try {
+        const { error } = await sb.from(TABLE_NAME).insert([{ name, message }]);
+        if (error) throw error;
+
+        document.getElementById('gb-name').value = '';
+        document.getElementById('gb-message').value = '';
+        showStatus('✓ Bericht geplaatst!', 'var(--gold)');
+        loadEntries();
+      } catch (err) {
+        showStatus('❌ Kon niet versturen. Probeer opnieuw.', '#e74c3c');
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Verstuur bericht';
+      }
+    }
+
+    function showStatus(msg, color) {
+      const s = document.getElementById('gb-status');
+      s.textContent = msg;
+      s.style.color = color;
+      s.style.display = 'block';
+      setTimeout(() => s.style.display = 'none', 3500);
+    }
+
+    function escHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function formatDate(iso) {
+      try {
+        return new Date(iso).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch { return ''; }
+    }
+
+    // Init
+    loadEntries();
+  </script>
+</body>
+</html>
